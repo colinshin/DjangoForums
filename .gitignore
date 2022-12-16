@@ -1,0 +1,6 @@
+# Specify filepatterns you want git to ignore.
+
+.pyv/
+.DS_Store
+*.pyc
+db.sqlite3
