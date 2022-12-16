@@ -7,6 +7,10 @@ class BaseModel(models.Model):
     updated_at = models.DateTimeField(default=timezone.now)
 
 
+class ForumCategory(BaseModel):
+    name = models.CharField(max_length=256, unique=True)
+    
+
 class Forum(BaseModel):
     name = models.CharField(max_length=256, unique=True)
     description = models.CharField(max_length=512)
