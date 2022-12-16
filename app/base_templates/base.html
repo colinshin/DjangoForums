@@ -9,6 +9,15 @@
 		{% block page_styles %}{% endblock %}
 	</head>
 	<body>
+		<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+			<div class="container">
+				<h1><a href="#0" class="navbar-brand">Forum</a></h1>
+				<button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#navbar-search" aria-controls="navbar-search" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</nav>
+
 		{% block content %}{% endblock %}
 		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 		{% block page_scripts %}{% endblock %}
