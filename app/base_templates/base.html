@@ -12,12 +12,24 @@
 		<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
 			<div class="container">
 				<h1><a href="#0" class="navbar-brand">Forum</a></h1>
-				<button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#navbar-search" aria-controls="navbar-search" aria-expanded="false" aria-label="Toggle navigation">
+				<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-search" aria-controls="navbar-search" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				<div class="collapse navbar-collapse mt-2 m2-sm-0" id="navbar-search">
+					<form class="ms-auto">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" aria-label="Search">
+							<button type="submit" class="btn btn-primary">Search</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</nav>
-
+		<div class="container my-3">
+			<ol class="breadcrumb">
+				<li class="breadcrum-item active" aria-current="page">Board Index</li>
+			</ol>
+		</div>
 		{% block content %}{% endblock %}
 		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 		{% block page_scripts %}{% endblock %}
