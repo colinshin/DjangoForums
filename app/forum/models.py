@@ -1,3 +1,16 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
+
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
+
+
+class Forum(BaseModel):
+    name = models.CharField(max_length=256, unique=True)
+    description = models.CharField(max_length=512)
+
+    def __str__(self):
+        return self.name
+
