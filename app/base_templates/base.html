@@ -29,8 +29,9 @@
 			<ol class="breadcrumb">
 				<li class="breadcrum-item active" aria-current="page">Board Index</li>
 			</ol>
+
+			{% block content %}{% endblock %}
 		</div>
-		{% block content %}{% endblock %}
 		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 		{% block page_scripts %}{% endblock %}
 	</body>
