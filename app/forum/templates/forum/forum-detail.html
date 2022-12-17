@@ -55,4 +55,47 @@
 		</div>
 	</div>
 </div>
+
+<div class="mb-3 clearfix">
+	<nav aria-label="Navigate post pages" class="float-lg-end">
+		<ol class="pagination pagination-sm mb-lg-0">
+			<li class="page-item active" aria-current="page">
+				<a href="#" class="page-link">
+					1 <span class="visually-hidden">(current)</span>
+				</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">2</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">3</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">4</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">5</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">&hellip; 31</a>
+			</li>
+			<li class="page-item">
+				<a href="#" class="page-link">Next</a>
+			</li>
+		</ol>
+	</nav>
+</div>
+{% endblock %}
+
+{% block page_styles %}
+<style>
+	.topic-col {
+		min-width: 16em;
+	}
+
+	.last-post-col,
+	.created-col {
+		min-width: 12em;
+	}
+</style>
 {% endblock %}
