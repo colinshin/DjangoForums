@@ -50,6 +50,24 @@
 							<div>05 Apr 2020, 07:54</div>
 						</td>
 					</tr>
+					{% for forum_post in post_list %}
+					<tr>
+						<td>
+							<h3 class="h6">
+								<a href="#">{{forum_post.title}}</a>
+							</h3>
+						</td>
+						<td>
+							<div>by <a href="#">{{forum_post.author.get_full_name}}</a></div>
+							<div>{{forum_post.created_at}}</div>
+						</td>
+						<td>
+							<div>0 Replies</div>
+							<div>0 Views</div>
+						</td>
+						<td>&nbsp;</td>
+					</tr>
+					{% endfor %}
 				</tbody>
 			</table>
 		</div>
