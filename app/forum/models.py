@@ -24,3 +24,9 @@ class Forum(BaseModel):
 
     class Meta:
         unique_together = ("name", "category")
+
+
+class ForumPost(BaseModel):
+    title = models.CharField(max_length=256)
+    views = models.IntegerField(default=0)
+    content = models.TextField()
