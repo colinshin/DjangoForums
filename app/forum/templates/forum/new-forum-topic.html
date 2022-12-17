@@ -4,7 +4,8 @@
 <div class="row">
 	<div class="col-12">
 		<h1 class="h3">New Topic: {{forum_data.name}}</h1>
-		<form>
+		<form method="POST" action=".">
+			{% csrf_token %}
 			<div class="input-group mb-3">
 				<label class="visually-hidden" for="topic-title">Title</label>
 				<span class="input-group-text" id="topic-title-label">Title</span>
@@ -12,7 +13,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="topic-content" class="form-label">Content</label>
-				<textarea class="form-control" id="topic-content" rows="10"></textarea>
+				<textarea class="form-control" name="topic-content" id="topic-content" rows="10"></textarea>
 			</div>
 			<div>
 				<button type="submit" class="btn btn-primary btn-sm">Save</button>

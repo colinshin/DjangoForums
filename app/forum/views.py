@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 
 # Create your views here.
@@ -21,6 +21,10 @@ def new_forum_topic(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
     if request.method == "POST":
         title = request.POST.get("topic-title", None)
-        content = request.POST.et("topic-content", None)
+        content = request.POST.get("topic-content", None)
+
+        new_topic = models.ForumPost(title=title, content=content, author=request.user)
+        new_topic.save()
+        return redirect("forum-detail", pk)
     return render(request, "forum/new-forum-topic.html", {"forum_data": forum_data})
  
