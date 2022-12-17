@@ -15,10 +15,12 @@ class ForumCategory(BaseModel):
 
 
 class Forum(BaseModel):
-    name = models.CharField(max_length=256, unique=True)
+    name = models.CharField(max_length=256)
     description = models.CharField(max_length=512)
     category = models.ForeignKey(ForumCategory, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        unique_together = ("name", "category")
