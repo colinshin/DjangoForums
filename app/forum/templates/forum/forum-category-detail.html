@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	{% include 'forum/fragments/forum_panel.html' with forum_cat=cat_data %}
+</div>
+{% endblock %}
