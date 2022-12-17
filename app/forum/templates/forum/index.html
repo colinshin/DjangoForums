@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="row">
-
+	<div class="col-12 col-xl-9">
 	{% for forum_cat in forum_cat_list %}
 	{% include 'forum/fragments/forum_panel.html' %}
 	{% endfor %}
+	</div>
 	
 	<div class="col-12 col-xl-3">
 		<aside>
