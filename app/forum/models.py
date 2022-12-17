@@ -20,7 +20,7 @@ class Forum(BaseModel):
     category = models.ForeignKey(ForumCategory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}: {self.category.name}"
 
     class Meta:
         unique_together = ("name", "category")
