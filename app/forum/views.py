@@ -16,3 +16,11 @@ def forum_detail(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
     return render(request, "forum/forum-detail.html", {"forum_data": forum_data})
 
+
+def new_forum_topic(request, pk):
+    forum_data = models.Forum.objects.get(pk=pk)
+    if request.method == "POST":
+        title = request.POST.get("topic-title", None)
+        content = request.POST.et("topic-content", None)
+    return render(request, "forum/new-forum-topic.html", {"forum_data": forum_data})
+ 
