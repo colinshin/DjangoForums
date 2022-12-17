@@ -57,33 +57,7 @@
 </div>
 
 <div class="mb-3 clearfix">
-	<nav aria-label="Navigate post pages" class="float-lg-end">
-		<ol class="pagination pagination-sm mb-lg-0">
-			<li class="page-item active" aria-current="page">
-				<a href="#" class="page-link">
-					1 <span class="visually-hidden">(current)</span>
-				</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">2</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">3</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">4</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">5</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">&hellip; 31</a>
-			</li>
-			<li class="page-item">
-				<a href="#" class="page-link">Next</a>
-			</li>
-		</ol>
-	</nav>
+	{% include 'forum/fragments/pagination.html' %}
 	<form class="d-md-flex align-items-md-center float-lg-start">
 		<div class="mb-2 mb-md-0 me-md-2">Display posts from previous:</div>
 		<div class="mb-2 mb-md-0 me-md-2">
