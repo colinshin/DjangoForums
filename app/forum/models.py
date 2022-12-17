@@ -7,6 +7,9 @@ class BaseModel(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        abstract = True
+
 
 class ForumCategory(BaseModel):
     name = models.CharField(max_length=256, unique=True)
@@ -32,3 +35,5 @@ class ForumPost(BaseModel):
     views = models.IntegerField(default=0)
     content = models.TextField()
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    # forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+
