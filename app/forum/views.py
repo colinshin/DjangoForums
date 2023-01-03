@@ -37,5 +37,9 @@ def new_forum_topic(request, pk):
 
 def post_detail(request, pk, post_pk):
     forum_data = models.Forum.objects.get(pk=pk)
-    post_detail = models.ForumPost.objects.get(pk=post_pk)
-    return render(request, "forum/post-detail.html", {"forum_data": forum_data, "post_data": post_detail})
+    post_data = models.ForumPost.objects.get(pk=post_pk)
+    return render(
+        request,
+        "forum/post-detail.html",
+        {"forum_data": forum_data, "post_data": post_data}
+    )
