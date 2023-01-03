@@ -54,7 +54,7 @@
 					<tr>
 						<td>
 							<h3 class="h6">
-								<a href="#">{{forum_post.title}}</a>
+								<a href="{% url 'forum-post-detail' forum_data.id forum_post.id %}">{{forum_post.title}}</a>
 							</h3>
 						</td>
 						<td>
