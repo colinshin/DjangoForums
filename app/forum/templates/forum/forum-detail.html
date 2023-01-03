@@ -109,7 +109,9 @@
 		<button type="submit" class="btn btn-sm btn-primary">Go</button>
 	</form>
 </div>
+{% if request.user.is_authenticated %}
 <a href="{% url 'forum-new-topic' forum_data.id %}" class="btn btn-primary">New Topic</a>
+{% endif %}
 {% endblock %}
 
 {% block page_styles %}
