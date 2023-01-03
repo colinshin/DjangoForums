@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static martortags %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
@@ -41,17 +42,40 @@
 			</div>
 			<div class="card-body">
 				<div class="mb-3">
-					<textarea class="form-control" rows="6"></textarea>
+					<form action="." method="POST" id="new-comment-form">
+						{% csrf_token %}
+						{{form.as_p}}
+					</form>
 				</div>
 			</div>
 			<div class="card-footer">
-				<button class="btn btn-primary btn-sm">Submit</button>
+				<button class="btn btn-primary btn-sm" id="new-comment-submit-button">Submit</button>
 			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
 
-{% block page_styles %}{% endblock %}
+{% block page_styles %}
+<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+{% endblock %}
 
-{% block page_scripts %}{% endblock %}
+{% block page_scripts %}
+<script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/typo.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/spellcheck.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'martor/js/martor.bootstrap.min.js' %}"></script>
+<script>
+	let submitButton = document.getElementById("new-comment-submit-button");
+	submitButton.addEventListener("click", (event) => {
+		console.log("Form submit!");
+	});
+</script>
+{% endblock %}

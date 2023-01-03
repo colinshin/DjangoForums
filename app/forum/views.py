@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import models
+from . import forms as post_forms
 
 # Create your views here.
 def index(request):
@@ -36,10 +37,11 @@ def new_forum_topic(request, pk):
  
 
 def post_detail(request, pk, post_pk):
+    form = post_forms.PostForm()
     forum_data = models.Forum.objects.get(pk=pk)
     post_data = models.ForumPost.objects.get(pk=post_pk)
     return render(
         request,
         "forum/post-detail.html",
-        {"forum_data": forum_data, "post_data": post_data}
+        {"forum_data": forum_data, "post_data": post_data, "form": form}
     )
