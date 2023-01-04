@@ -49,7 +49,7 @@ def post_detail(request, pk, post_pk):
             item.forum = forum_data
             item.parent = post_data
             item.save()
-            return redirect("forum-detail", item.id)
+            return redirect("forum-post-detail", pk=pk, post_pk=post_pk)
     else:
         form = post_forms.PostForm()
     return render(
