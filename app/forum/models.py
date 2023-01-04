@@ -35,5 +35,6 @@ class ForumPost(BaseModel):
     views = models.IntegerField(default=0)
     content = models.TextField()
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    parent = models.ForeignKey("ForumPost", blank=True, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
 
