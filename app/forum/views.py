@@ -40,6 +40,7 @@ def new_forum_topic(request, pk):
 def post_detail(request, pk, post_pk):
     forum_data = models.Forum.objects.get(pk=pk)
     post_data = models.ForumPost.objects.get(pk=post_pk)
+    reply_list = models.ForumPost.objects.filter(forum=forum_data, parent=post_data).order_by("created_at")
     if request.method == "POST":
         form = post_forms.PostForm(request.POST)
         if form.is_valid():
@@ -54,5 +55,5 @@ def post_detail(request, pk, post_pk):
     return render(
         request,
         "forum/post-detail.html",
-        {"forum_data": forum_data, "post_data": post_data, "form": form}
+        {"forum_data": forum_data, "post_data": post_data, "form": form, "reply_list": reply_list}
     )

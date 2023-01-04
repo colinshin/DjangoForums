@@ -30,11 +30,26 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="coard-text">Body content</div>
+				<div class="card-text">{{post_data.content|safe_markdown}}</div>
 			</div>
 			<div class="card-footer">
 			</div>
 		</div>
+		{% for reply in reply_list %}
+		<div class="card mt-3">
+			<div class="card-header">
+				<div class="d-flex justify-content-between">
+					<div>{{reply.author.first_name}} {{reply.author.last_name}} commented at: {{reply.created_at}}</div>
+					<div>{% if reply.author == request.user %}<span class="badge bg-secondary">author</span>{% endif %}</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="card-text">{{reply.content|safe_markdown}}</div>
+			</div>
+			<div class="card-footer">
+			</div>
+		</div>
+		{% endfor %}
 		<hr />
 		<div class="card">
 			<div class="card-header">
@@ -59,6 +74,11 @@
 {% block page_styles %}
 <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<style>
+	.card-text p {
+		margin-bottom: 0px;
+	}
+</style>
 {% endblock %}
 
 {% block page_scripts %}
