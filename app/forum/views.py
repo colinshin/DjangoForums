@@ -15,7 +15,7 @@ def forum_category_detail(request, pk):
 
 def forum_detail(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
-    post_list = forum_data.forumpost_set.all()
+    post_list = models.ForumPost.objects.filter(forum=forum_data, parent__isnull=True)
     return render(request, "forum/forum-detail.html", {"forum_data": forum_data, "post_list": post_list})
 
 
@@ -29,7 +29,8 @@ def new_forum_topic(request, pk):
             title=title,
             content=content,
             author=request.user,
-            forum=forum_data
+            forum=forum_data,
+            parent=None
         )
         new_topic.save()
         return redirect("forum-detail", pk)
@@ -37,9 +38,19 @@ def new_forum_topic(request, pk):
  
 
 def post_detail(request, pk, post_pk):
-    form = post_forms.PostForm()
     forum_data = models.Forum.objects.get(pk=pk)
     post_data = models.ForumPost.objects.get(pk=post_pk)
+    if request.method == "POST":
+        form = post_forms.PostForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.author = request.user
+            item.forum = forum_data
+            item.parent = post_data
+            item.save()
+            return redirect("forum-detail", item.id)
+    else:
+        form = post_forms.PostForm()
     return render(
         request,
         "forum/post-detail.html",

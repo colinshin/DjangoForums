@@ -75,7 +75,7 @@
 <script>
 	let submitButton = document.getElementById("new-comment-submit-button");
 	submitButton.addEventListener("click", (event) => {
-		console.log("Form submit!");
+		document.getElementById("new-comment-form").submit();
 	});
 </script>
 {% endblock %}
