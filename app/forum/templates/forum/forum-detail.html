@@ -85,39 +85,8 @@
 
 {% if post_list %}
 <div class="mb-3 clearfix">
-	{% include 'forum/fragments/pagination.html' %}
-	<form class="d-md-flex align-items-md-center float-lg-start">
-		<div class="mb-2 mb-md-0 me-md-2">Display posts from previous:</div>
-		<div class="mb-2 mb-md-0 me-md-2">
-			<label class="visually-hidden" for="select-time">Time Period</label>
-			<select class="form-select form-select-sm" id="select-time">
-				<option value="all-posts" selected>All Posts</option>
-				<option value="day">1 Day</option>
-				<option value="week">1 Week</option>
-				<option value="month">1 Month</option>
-				<option value="year">1 Year</option>
-			</select>
-		</div>
-		<div class="mb-2 mb-md-0 me-md-2">Sort By:</div>
-		<div class="mb-2 mb-md-0 me-md-2">
-			<label class="visually-hidden" for="select-sort">Sort By</label>
-			<select class="form-select form-select-sm" id="select-sort">
-				<option value="author">Author</option>
-				<option value="post-time" selected>Post Time</option>
-				<option value="replies">Replies</option>
-				<option value="subject">Subject</option>
-				<option value="views">Views</option>
-			</select>
-		</div>
-		<div class="mb-2 mb-md-0 me-md-2">
-			<label class="visually-hidden" for="select-direction">Sort Direction</label>
-			<select class="form-select form-select-sm" id="select-direction">
-				<option value="ascending">Ascending</option>
-				<option value="descending" selected>Descending</option>
-			</select>
-		</div>
-		<button type="submit" class="btn btn-sm btn-primary">Go</button>
-	</form>
+	{% include 'forum/fragments/pagination.html' with page_obj=post_list %}
+	{% include 'forum/fragments/post-filters.html' %}
 </div>
 {% endif %}
 {% if request.user.is_authenticated %}
