@@ -135,6 +135,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom User Model
 AUTH_USER_MODEL ="core.CoreUser"
 
+# Login settings
+LOGIN_REDIRECT_URL = "/"
+
 # Martor settings
 MARTOR_THEME = 'bootstrap'
 MARTOR_TOOLBAR_BUTTONS = [
