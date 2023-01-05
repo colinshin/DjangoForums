@@ -17,7 +17,7 @@ def forum_category_detail(request, pk):
 
 def forum_detail(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
-    per_page = 3
+    per_page = 20
     post_list = models.ForumPost.objects.filter(forum=forum_data, parent__isnull=True)
     paginator = Paginator(post_list, per_page)
     page_num = request.GET.get("page")
