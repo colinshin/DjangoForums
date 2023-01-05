@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from . import models
 from . import forms as post_forms
+
 
 # Create your views here.
 def index(request):
@@ -15,32 +17,41 @@ def forum_category_detail(request, pk):
 
 def forum_detail(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
+    per_page = 3
     post_list = models.ForumPost.objects.filter(forum=forum_data, parent__isnull=True)
-    return render(request, "forum/forum-detail.html", {"forum_data": forum_data, "post_list": post_list})
+    paginator = Paginator(post_list, per_page)
+    page_num = request.GET.get("page")
+    page_obj = paginator.get_page(page_num)
+    return render(
+        request,
+        "forum/forum-detail.html",
+        {"forum_data": forum_data, "post_list": page_obj}
+    )
 
 
 def new_forum_topic(request, pk):
     forum_data = models.Forum.objects.get(pk=pk)
     if request.method == "POST":
-        title = request.POST.get("topic-title", None)
-        content = request.POST.get("topic-content", None)
+        form = post_forms.PostForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.author = request.user
+            item.forum = forum_data
+            item.parent = None
+            item.save()
+            return redirect("forum-detail", pk)
+    else:
+        form = post_forms.PostForm()
+    return render(request, "forum/new-forum-topic.html", {"forum_data": forum_data, "form": form})
 
-        new_topic = models.ForumPost(
-            title=title,
-            content=content,
-            author=request.user,
-            forum=forum_data,
-            parent=None
-        )
-        new_topic.save()
-        return redirect("forum-detail", pk)
-    return render(request, "forum/new-forum-topic.html", {"forum_data": forum_data})
- 
 
 def post_detail(request, pk, post_pk):
     forum_data = models.Forum.objects.get(pk=pk)
     post_data = models.ForumPost.objects.get(pk=post_pk)
-    reply_list = models.ForumPost.objects.filter(forum=forum_data, parent=post_data).order_by("created_at")
+    reply_list = models.ForumPost.objects.filter(
+        forum=forum_data,
+        parent=post_data
+    ).order_by("created_at")
     if request.method == "POST":
         form = post_forms.PostForm(request.POST)
         if form.is_valid():
