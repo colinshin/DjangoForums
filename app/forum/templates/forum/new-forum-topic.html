@@ -1,27 +1,5 @@
 {% extends "base.html" %}
-
-{% block content %}
-<div class="row">
-	<div class="col-12">
-		<h1 class="h3">New Topic: {{forum_data.name}}</h1>
-		<form method="POST" action=".">
-			{% csrf_token %}
-			<div class="input-group mb-3">
-				<label class="visually-hidden" for="topic-title">Title</label>
-				<span class="input-group-text" id="topic-title-label">Title</span>
-				<input type="text" name="topic-title" class="form-control" placeholder="Enter a title" aria-label="Topic title" aria-describedby="topic-title-label">
-			</div>
-			<div class="mb-3">
-				<label for="topic-content" class="form-label">Content</label>
-				<textarea class="form-control" name="topic-content" id="topic-content" rows="10"></textarea>
-			</div>
-			<div>
-				<button type="submit" class="btn btn-primary btn-sm">Save</button>
-			</div>
-		</form>
-	</div>
-</div>
-{% endblock %}
+{% load static %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
@@ -32,4 +10,42 @@
 	<li class="breadcrumb-item"><a href="{% url 'forum-detail' forum_data.id %}">{{forum_data.name}}</a></li>
 	<li class="breadcrumb-item">New Topic</li>
 </ol>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-12">
+		<h1 class="h3">New Topic: {{forum_data.name}}</h1>
+		<form method="POST" action=".">
+			{% csrf_token %}
+			{{form.as_p}}
+			<div>
+				<button type="submit" class="btn btn-primary btn-sm">Save</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block page_scripts %}
+<script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/typo.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/spellcheck.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'martor/js/martor.bootstrap.min.js' %}"></script>
+{% endblock %}
+
+{% block page_styles %}
+<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<style>
+ .card-text p {
+	 margin-bottom: 0px;
+ }
+</style>
 {% endblock %}
